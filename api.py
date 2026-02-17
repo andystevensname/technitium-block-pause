@@ -1,5 +1,4 @@
-
-
+class TechnitiumApi:
     def __init__(self, host, api_key, session, timeout=10):
         self._host = host
         self._api_key = api_key
