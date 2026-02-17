@@ -22,10 +22,9 @@ from homeassistant.const import CONF_HOST, CONF_API_KEY
 from .const import DOMAIN
 
 class TechnitiumBlockPauseConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
-    def __init__(self):
-        self.options_flow_class = TechnitiumBlockPauseOptionsFlowHandler
-        async def async_get_options_flow(self):
-            return TechnitiumBlockPauseOptionsFlowHandler
+    @staticmethod
+    def async_get_options_flow(config_entry):
+        return TechnitiumBlockPauseOptionsFlowHandler(config_entry)
     async def async_step_user(self, user_input=None):
         # Validate user input for host and API key
         import re
