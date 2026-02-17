@@ -1,4 +1,6 @@
+
 from datetime import timedelta
+import logging
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator
 from homeassistant.core import HomeAssistant
 from .const import DOMAIN
@@ -7,7 +9,7 @@ class TechnitiumBlockPauseDataUpdateCoordinator(DataUpdateCoordinator):
     def __init__(self, hass: HomeAssistant, api, update_interval=30):
         super().__init__(
             hass,
-            None,  # No need for a logger here, Home Assistant will log update failures
+            logging.getLogger(__name__),
             name="Technitium Block Pause Data Coordinator",
             update_interval=timedelta(seconds=update_interval),
         )
