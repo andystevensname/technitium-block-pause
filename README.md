@@ -74,7 +74,9 @@ After setup, you can configure these options:
 | Pause max | 86400 | Maximum pause duration (seconds) |
 | API timeout | 10 | API request timeout (seconds) |
 
-## Example Dashboard Card
+## Example Dashboard Card - Basic
+
+![Screenshot description](docs/images/demo-basic.png)
 
 ```yaml
 type: horizontal-stack
@@ -99,6 +101,93 @@ cards:
     tap_action:
       action: call-service
       service: technitium_block_pause.disable_ad_blocking
+```
+
+## Example Dashboard Card - Bubble Card
+
+![Screenshot description](docs/images/demo-bubblecard.png)
+
+```yaml
+button_type: switch
+sub_button:
+  main:
+    - name: Pause Blocking
+      buttons_layout: inline
+      group:
+        - name: "5"
+          tap_action:
+            action: perform-action
+            perform_action: technitium_block_pause.pause_ad_blocking
+            target: {}
+            data:
+              duration: 300
+          show_name: true
+          visibility:
+            - condition: state
+              entity: switch.technitium_block_pause_ad_blocking
+              state: "on"
+          hide_when_parent_unavailable: false
+        - name: "15"
+          tap_action:
+            action: perform-action
+            perform_action: technitium_block_pause.pause_ad_blocking
+            target: {}
+            data:
+              duration: 900
+          show_name: true
+          visibility:
+            - condition: state
+              entity: switch.technitium_block_pause_ad_blocking
+              state: "on"
+        - name: "30"
+          show_name: true
+          visibility:
+            - condition: state
+              entity: switch.technitium_block_pause_ad_blocking
+              state: "on"
+          tap_action:
+            action: perform-action
+            perform_action: technitium_block_pause.pause_ad_blocking
+            target: {}
+            data:
+              duration: 1800
+        - name: Stop
+          show_state: false
+          show_name: true
+          tap_action:
+            action: perform-action
+            perform_action: technitium_block_pause.disable_ad_blocking
+            target: {}
+          visibility:
+            - condition: state
+              entity: switch.technitium_block_pause_ad_blocking
+              state: "on"
+    - name: Start
+      buttons_layout: inline
+      group:
+        - name: Start
+          show_name: true
+          tap_action:
+            action: perform-action
+            perform_action: technitium_block_pause.enable_ad_blocking
+            target: {}
+          visibility:
+            - condition: state
+              entity: switch.technitium_block_pause_ad_blocking
+              state: "off"
+          hide_when_parent_unavailable: false
+  bottom: []
+slider_fill_orientation: left
+slider_value_position: right
+grid_options:
+  columns: full
+name: Pause Ad Block
+icon: mdi:block-helper
+show_icon: true
+force_icon: true
+scrolling_effect: false
+show_state: true
+entity: switch.technitium_block_pause_ad_blocking
 ```
 
 ## Links
