@@ -1,4 +1,4 @@
-# Technitium Block Pause
+# Technitium AdBlock Toggle
 
 A Home Assistant custom integration to monitor and control ad blocking on a [Technitium DNS Server](https://technitium.com/dns/).
 
@@ -13,7 +13,7 @@ A Home Assistant custom integration to monitor and control ad blocking on a [Tec
 ## Installation
 
 ### Manual Installation
-1. Copy the `technitium_block_pause` folder to your Home Assistant `custom_components` directory
+1. Copy the `technitium_adblock_toggle` folder to your Home Assistant `custom_components` directory
 2. Restart Home Assistant
 3. Go to **Settings → Devices & Services → Add Integration**
 4. Search for "Technitium Block Pause"
@@ -37,12 +37,12 @@ This integration may be added to HACS in the future.
 ## Entities
 
 ### Switch: Ad Blocking
-- **Entity ID**: `switch.technitium_block_pause_ad_blocking`
+- **Entity ID**: `switch.technitium_adblock_toggle_ad_blocking`
 - **ON**: Ad blocking is enabled
 - **OFF**: Ad blocking is disabled
 
 ### Sensor: Blocking Status
-- **Entity ID**: `sensor.technitium_block_pause_blocking_status`
+- **Entity ID**: `sensor.technitium_adblock_toggle_blocking_status`
 - **States**: `enabled`, `paused`, `disabled`, `unknown`
 - **Attributes**:
   - `enable_blocking`: Whether blocking is enabled in settings
@@ -50,17 +50,17 @@ This integration may be added to HACS in the future.
 
 ## Services
 
-### `technitium_block_pause.pause_ad_blocking`
+### `technitium_adblock_toggle.pause_ad_blocking`
 Temporarily pause ad blocking for a specified duration.
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
 | duration | int | Yes | Seconds to pause (converted to minutes for Technitium) |
 
-### `technitium_block_pause.enable_ad_blocking`
+### `technitium_adblock_toggle.enable_ad_blocking`
 Enable ad blocking (cancels any temporary pause).
 
-### `technitium_block_pause.disable_ad_blocking`
+### `technitium_adblock_toggle.disable_ad_blocking`
 Disable ad blocking indefinitely.
 
 ## Options
@@ -86,13 +86,13 @@ cards:
     icon: mdi:shield-check
     tap_action:
       action: call-service
-      service: technitium_block_pause.enable_ad_blocking
+      service: technitium_adblock_toggle.enable_ad_blocking
   - type: button
     name: 5 min
     icon: mdi:shield-off
     tap_action:
       action: call-service
-      service: technitium_block_pause.pause_ad_blocking
+      service: technitium_adblock_toggle.pause_ad_blocking
       data:
         duration: 300
   - type: button
@@ -100,7 +100,7 @@ cards:
     icon: mdi:shield-off-outline
     tap_action:
       action: call-service
-      service: technitium_block_pause.disable_ad_blocking
+      service: technitium_adblock_toggle.disable_ad_blocking
 ```
 
 ## Example Dashboard Card - Bubble Card
@@ -117,37 +117,37 @@ sub_button:
         - name: "5"
           tap_action:
             action: perform-action
-            perform_action: technitium_block_pause.pause_ad_blocking
+            perform_action: technitium_adblock_toggle.pause_ad_blocking
             target: {}
             data:
               duration: 300
           show_name: true
           visibility:
             - condition: state
-              entity: switch.technitium_block_pause_ad_blocking
+              entity: switch.technitium_adblock_toggle_ad_blocking
               state: "on"
           hide_when_parent_unavailable: false
         - name: "15"
           tap_action:
             action: perform-action
-            perform_action: technitium_block_pause.pause_ad_blocking
+            perform_action: technitium_adblock_toggle.pause_ad_blocking
             target: {}
             data:
               duration: 900
           show_name: true
           visibility:
             - condition: state
-              entity: switch.technitium_block_pause_ad_blocking
+              entity: switch.technitium_adblock_toggle_ad_blocking
               state: "on"
         - name: "30"
           show_name: true
           visibility:
             - condition: state
-              entity: switch.technitium_block_pause_ad_blocking
+              entity: switch.technitium_adblock_toggle_ad_blocking
               state: "on"
           tap_action:
             action: perform-action
-            perform_action: technitium_block_pause.pause_ad_blocking
+            perform_action: technitium_adblock_toggle.pause_ad_blocking
             target: {}
             data:
               duration: 1800
@@ -156,11 +156,11 @@ sub_button:
           show_name: true
           tap_action:
             action: perform-action
-            perform_action: technitium_block_pause.disable_ad_blocking
+            perform_action: technitium_adblock_toggle.disable_ad_blocking
             target: {}
           visibility:
             - condition: state
-              entity: switch.technitium_block_pause_ad_blocking
+              entity: switch.technitium_adblock_toggle_ad_blocking
               state: "on"
     - name: Start
       buttons_layout: inline
@@ -169,11 +169,11 @@ sub_button:
           show_name: true
           tap_action:
             action: perform-action
-            perform_action: technitium_block_pause.enable_ad_blocking
+            perform_action: technitium_adblock_toggle.enable_ad_blocking
             target: {}
           visibility:
             - condition: state
-              entity: switch.technitium_block_pause_ad_blocking
+              entity: switch.technitium_adblock_toggle_ad_blocking
               state: "off"
           hide_when_parent_unavailable: false
   bottom: []
@@ -187,11 +187,11 @@ show_icon: true
 force_icon: true
 scrolling_effect: false
 show_state: true
-entity: switch.technitium_block_pause_ad_blocking
+entity: switch.technitium_adblock_toggle_ad_blocking
 ```
 
 ## Links
 
 - [Technitium DNS Server](https://technitium.com/dns/)
 - [Technitium API Documentation](https://github.com/TechnitiumSoftware/DnsServer/blob/master/APIDOCS.md)
-- [Report Issues](https://github.com/andystevensname/technitium_block_pause/issues)
+- [Report Issues](https://github.com/andystevensname/technitium_adblock_toggle/issues)

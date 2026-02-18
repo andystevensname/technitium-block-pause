@@ -1,5 +1,5 @@
-DOMAIN = "technitium_block_pause"
-DEFAULT_NAME = "Technitium Block Pause"
+DOMAIN = "technitium_adblock_toggle"
+DEFAULT_NAME = "Technitium AdBlock Toggle"
 
 # Default configuration values
 DEFAULT_UPDATE_INTERVAL = 30
