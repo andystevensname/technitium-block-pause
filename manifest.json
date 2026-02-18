@@ -1,10 +1,12 @@
 {
   "domain": "technitium_block_pause",
   "name": "Technitium Block Pause",
-  "version": "0.1.0",
-  "documentation": "https://github.com/TechnitiumSoftware/DnsServer",
+  "version": "0.2.0",
+  "documentation": "https://github.com/andystevensname/technitium_block_pause#readme",
+  "issue_tracker": "https://github.com/andystevensname/technitium_block_pause/issues",
   "requirements": [],
   "dependencies": [],
-  "codeowners": ["@your-github-username"],
-  "config_flow": true
+  "codeowners": ["@andystevensname"],
+  "config_flow": true,
+  "iot_class": "local_polling"
 }
